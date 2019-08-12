@@ -1,8 +1,26 @@
 import dash_core_components as dcc
 import dash_html_components as html
-from components import Header, print_button
+from components import Header, print_button,pydf
+import dash_bootstrap_components as dbc
+import pymongo
+import pandas as pd
+import dash_table as dt
+from data import df
 
+
+######################## mongo db data ########################
+# use this to import csv into local mongo db
+# mongoimport --db db_dash --collection collection_dash --type csv 
+# --headerline --file data/data.csv
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient["db_dash"]
+mycol = mydb["collection_dash"]
+
+df1 = pd.DataFrame(list(mycol.find()))
+df=((df1[['Date','Travel Product']]))
 ######################## START HOME Layout ########################
+
 
 layout1 = html.Div([
     html.Div([
@@ -18,6 +36,8 @@ layout1 = html.Div([
         ]
     ),
     html.Div(id='app-1-display-value'),
+
+
     dcc.Link('Go to App 2', href='/apps/app2'),
     html.Div([
     html.A(html.Button('Download Data', id='download-button'), id='download-link-birst-category'),
@@ -35,6 +55,27 @@ layout2 = html.Div([
         # CC Header
         Header(),
     html.H3('EMPLOYESS'),
+    html.Div([
+        dbc.Row(dbc.Col(
+            # dash table
+            dt.DataTable(
+                id='table',
+                columns=[{"name": i, "id": i} for i in df.columns],
+                data=(df.head()).to_dict('records'),
+                editable=True,
+                filter_action="native",
+                sort_action="native",
+                sort_mode="multi",
+                row_selectable="multi",
+                selected_rows=[],
+                fixed_rows={'headers': True, 'data': 0},
+                style_table={'overflowX': 'scroll',
+                             'textAlign': 'left',
+                             },
+            ),
+        )),
+
+    ]),
     dcc.Dropdown(
         id='app-2-dropdown',
         options=[

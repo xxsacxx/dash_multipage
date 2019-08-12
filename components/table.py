@@ -1,6 +1,6 @@
 import dash_html_components as html
 
-def make_dash_table(df):
+def makee_dash_table(df):
     ''' Return a dash definition of an HTML table for a Pandas dataframe '''
     table = []
     for index, row in df.iterrows():
