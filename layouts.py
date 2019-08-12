@@ -20,7 +20,9 @@ layout1 = html.Div([
     html.Div(id='app-1-display-value'),
     dcc.Link('Go to App 2', href='/apps/app2'),
     html.Div([
-    html.A(html.Button('Download Data', id='download-button'), id='download-link-birst-category')
+    html.A(html.Button('Download Data', id='download-button'), id='download-link-birst-category'),
+    html.A(html.Button('Upload Data', id='upload-button'), id='upload-link-birst-category')
+    
         ]),
     ])
 ])
@@ -29,6 +31,9 @@ layout1 = html.Div([
 
 
 layout2 = html.Div([
+    html.Div([
+        # CC Header
+        Header(),
     html.H3('EMPLOYESS'),
     dcc.Dropdown(
         id='app-2-dropdown',
@@ -39,13 +44,22 @@ layout2 = html.Div([
         ]
     ),
     html.Div(id='app-2-display-value'),
-    dcc.Link('Go to App 1', href='/apps/app1')
+    dcc.Link('Go to App 1', href='/apps/app1'),
+    html.Div([
+    html.A(html.Button('Download Data', id='downlad-button'), id='download-link-birst-category'),
+    html.A(html.Button('Upload Data', id='upload-button'), id='upload-link-birst-category')
+    
+        ]),
+    ])
 ])
 
 ######################## START REPAYMENTS Layout ########################
 
 
 layout3 = html.Div([
+    html.Div([
+        # CC Header
+        Header(),
     html.H3('REPAYMENTS'),
     dcc.Dropdown(
         id='app-3-dropdown',
@@ -56,5 +70,11 @@ layout3 = html.Div([
         ]
     ),
     html.Div(id='app-3-display-value'),
-    dcc.Link('Go to App 1', href='/apps/app1')
+    dcc.Link('Go to App 1', href='/apps/app1'),
+    html.Div([
+    html.A(html.Button('Download Data', id='download-button'), id='download-link-birst-category'),
+    html.A(html.Button('Upload Data', id='upload-button'), id='upload-link-birst-category')
+    
+        ]),
+    ])
 ])

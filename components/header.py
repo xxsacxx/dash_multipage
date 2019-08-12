@@ -30,7 +30,7 @@ def get_header():
     header = html.Div([
 
         html.Div([
-            html.H5(
+            html.H1(
                 'KARMA LIFE')
         ], className="twelve columns padded")
 
@@ -41,12 +41,16 @@ def get_menu():
     menu = html.Div([
 
         dcc.Link('HOME    ', href='/apps/app1', className="tab first"),
+        html.Br([]),
 
         dcc.Link('EMPLOYEES   ', href='/apps/app2', className="tab"),
+        html.Br([]),
 
         dcc.Link('REPAYMENTS   ', href='/apps/app3', className="tab"),
+        html.Br([]),
 
         dcc.Link('REPORT   ', href='/apps/app3', className="tab"),
+        html.Br([])
 
        
     ], className="row ")
